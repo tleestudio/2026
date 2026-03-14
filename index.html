@@ -35,6 +35,16 @@ img.visible {
   transform: translateY(0);
 }
 
+.fade-img {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+.fade-img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 
@@ -43,26 +53,26 @@ img.visible {
 <div class="wrapper">
 
 <img src="tlee26-1a.webp" class="visible">
-<img src="tlee26-2a.webp" loading="lazy">
-<img src="tlee26-3a.webp" loading="lazy">
-<img src="tlee26-4a.webp" loading="lazy">
-<img src="tlee26-5a.webp" loading="lazy">
-<img src="tlee26-6a.webp" loading="lazy">
-<img src="tlee26-7a.webp" loading="lazy">
-<img src="tlee26-8a.webp" loading="lazy">
-<img src="tlee26-9a.webp" loading="lazy">
-<img src="tlee26-10a.webp" loading="lazy">
-<img src="tlee26-11a.webp" loading="lazy">
-<img src="tlee26-12a.webp" loading="lazy">
-<img src="tlee26-13a.webp" loading="lazy">
-<img src="tlee26-14a.webp" loading="lazy">
-<img src="tlee26-15a.webp" loading="lazy">
+<img src="tlee26-2a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-3a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-4a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-5a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-6a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-7a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-8a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-9a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-10a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-11a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-12a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-13a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-14a.webp" class="fade-img" loading="lazy">
+<img src="tlee26-15a.webp" class="fade-img" loading="lazy">
 
 </div>
 
 <script>
 
-const images = document.querySelectorAll("img");
+const images = document.querySelectorAll(".fade-img");
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -75,6 +85,6 @@ const observer = new IntersectionObserver(entries => {
 });
 
 images.forEach(img => observer.observe(img));
-
+  
 </body>
 </html>
