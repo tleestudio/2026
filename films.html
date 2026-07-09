@@ -1,16 +1,17 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tai-li Lee | 2026</title>
+<title>Tai-li Lee | Films</title>
 
 <style>
 
 body {
   margin: 0;
   font-family: sans-serif;
-  background: black;
+  background: white;
 }
 
 .wrapper {
@@ -19,26 +20,78 @@ body {
   padding: 20px;
 }
 
-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 20px;
-
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
+.video {
+  max-width: 1200px;
+  margin: 80px auto;
 }
 
-.video {
-    max-width: 1200px;
-    margin: 80px auto;
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: black;
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.play-button:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.play-button::after {
+  content: "";
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid black;
 }
 
 .video iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.fade {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 </style>
@@ -49,42 +102,50 @@ img {
 <div class="wrapper">
 
 <div class="video">
-  <iframe
-    src="https://player.vimeo.com/video/382873276"
-    frameborder="0"
-    allow="autoplay; fullscreen; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div>
 
-<div class="video">
-  <iframe
-    src="https://player.vimeo.com/video/382873276"
-    frameborder="0"
-    allow="autoplay; fullscreen; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div> 
+  <div class="video-container">
+
+    <img 
+      class="video-thumbnail"
+      src="images/film1.jpg"
+      alt="Film thumbnail">
+
+    <div class="play-button"></div>
+
+  </div>
 
 </div>
+
+</div>
+
 
 <script>
 
-const images = document.querySelectorAll(".fade-img");
+const videos = document.querySelectorAll(".video-container");
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    } else {
-      entry.target.classList.remove("visible");
-    }
+videos.forEach(video => {
+
+  video.addEventListener("click", function() {
+
+    const iframe = document.createElement("iframe");
+
+    iframe.src =
+      "https://player.vimeo.com/video/382873276?title=0&byline=0&portrait=0&controls=1&autoplay=1";
+
+    iframe.frameBorder = "0";
+    iframe.allow =
+      "autoplay; fullscreen; picture-in-picture";
+    iframe.allowFullscreen = true;
+
+    this.innerHTML = "";
+    this.appendChild(iframe);
+
   });
+
 });
 
-images.forEach(img => observer.observe(img));
-
 </script>
-  
+
 </body>
 </html>
+```
