@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tai-li Lee | 2026</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: black;
+}
+
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-img {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+.fade-img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="video">
+  <iframe
+    src="https://player.vimeo.com/video/382873276"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<div class="video">
+  <iframe
+    src="https://player.vimeo.com/video/382873276"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div> 
+
+</div>
+
+<script>
+
+const images = document.querySelectorAll(".fade-img");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    } else {
+      entry.target.classList.remove("visible");
+    }
+  });
+});
+
+images.forEach(img => observer.observe(img));
+
+</script>
+  
+</body>
+</html>
